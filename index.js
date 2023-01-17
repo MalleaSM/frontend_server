@@ -38,6 +38,12 @@ socketIO.on('connection',(socket) =>{
         socketIO.emit("newUserResponse",users);
     })
 
+    //remove user
+    socket.on("removeUser",(id)=>{
+        users.splice(users.findIndex((e) => e.socketID ===id),1);
+        socketIO.emit("newUserResponse",users);
+    })
+
     //typing handler 
     socket.on("typing", (data) =>{
         console.log(data);
